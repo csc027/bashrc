@@ -60,8 +60,12 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # git completion
-if [ -f "$(pkg-config --variable=completionsdir bash-completion)"/git ]; then
+if [ command -v pkg-config --variable=completionsdir bash-completion &> /dev/null ] && [ -f "$(pkg-config --variable=completionsdir bash-completion)"/git ]; then
 	source "$(pkg-config --variable=completionsdir bash-completion)"/git
+elif [ -f /etc/bash_completion.d/git ]; then
+	source /etc/bash_completion.d/git
+elif [ -f /usr/share/bash-completion/completions/git ]; then
+	source /usr/share/bash-completion/completions/git
 fi
 
 # Alias definitions.
