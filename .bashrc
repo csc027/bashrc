@@ -73,11 +73,6 @@ if [ -f ~/.bash_aliases ]; then
 	source ~/.bash_aliases
 fi
 
-# some versions of Debian/Ubuntu do not have the local bin set in the path
-if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-	PATH="$HOME/.local/bin:$PATH"
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
