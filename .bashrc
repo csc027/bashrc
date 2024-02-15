@@ -24,11 +24,6 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-	debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 	# We have color support; assume it's compliant with Ecma-48
 	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
@@ -41,14 +36,14 @@ fi
 if [ -f ~/.git-prompt.bash ]; then
 	source ~/.git-prompt.bash
 	if [ "$color_prompt" == "yes" ]; then
-		PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]$(git_bash_prompt)\[\033[00m\] \$ '
+		PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]$(git_bash_prompt)\[\033[00m\] \$ '
 	else
-		PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(git_bash_prompt) \$ '
+		PS1='\u@\h:\w$(git_bash_prompt) \$ '
 	fi
 elif [ "$color_prompt" == "yes" ]; then
-	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]\[\033[00m\] \$ '
+	PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]\[\033[00m\] \$ '
 else
-	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w \$ '
+	PS1='\u@\h:\w \$ '
 fi
 unset color_prompt force_color_prompt
 
