@@ -57,7 +57,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # git completion
-if [ -f /etc/bash_completion.d/git ]; then
+if [ -f ~/.git-completion.bash ]; then
+	source ~/.git-completion.bash
+elif [ -f /etc/bash_completion.d/git ]; then
 	source /etc/bash_completion.d/git
 elif [ -f /usr/share/bash-completion/completions/git ]; then
 	source /usr/share/bash-completion/completions/git
