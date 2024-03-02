@@ -56,6 +56,10 @@ if [ -x /usr/bin/dircolors ]; then
 	alias egrep='egrep --color=auto'
 fi
 
+# git completion ignore case
+GIT_COMPLETION_IGNORE_CASE=1
+export GIT_COMPLETION_IGNORE_CASE
+
 # git completion
 if [ -f ~/.git-completion.bash ]; then
 	source ~/.git-completion.bash
