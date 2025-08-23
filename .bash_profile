@@ -1,4 +1,4 @@
-if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.profile" ]; then
+if [ -f "$HOME/.profile" ]; then
 	source "$HOME/.profile"
 fi
 
