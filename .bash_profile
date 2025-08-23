@@ -1,6 +1,5 @@
-# some versions of Debian/Ubuntu do not have the local bin set in the path
-if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-	PATH="$HOME/.local/bin:$PATH"
+if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.profile" ]; then
+	source "$HOME/.profile"
 fi
 
 if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ]; then

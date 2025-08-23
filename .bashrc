@@ -24,28 +24,32 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-else
-	color_prompt=
-fi
-
-if [ -f ~/.git-prompt.bash ]; then
-	source ~/.git-prompt.bash
-	if [ "$color_prompt" == "yes" ]; then
-		PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]$(git_bash_prompt)\[\033[00m\] \$ '
+if [ -z "$(command -v oh-my-posh)" ]; then
+	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+		# We have color support; assume it's compliant with Ecma-48
+		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+		# a case would tend to support setf rather than setaf.)
+		color_prompt=yes
 	else
-		PS1='\u@\h:\w$(git_bash_prompt) \$ '
+		color_prompt=
 	fi
-elif [ "$color_prompt" == "yes" ]; then
-	PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]\[\033[00m\] \$ '
+
+	if [ -f ~/.git-prompt.bash ]; then
+		source ~/.git-prompt.bash
+		if [ "$color_prompt" == "yes" ]; then
+			PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]$(git_bash_prompt)\[\033[00m\] \$ '
+		else
+			PS1='\u@\h:\w$(git_bash_prompt) \$ '
+		fi
+	elif [ "$color_prompt" == "yes" ]; then
+		PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]\[\033[00m\] \$ '
+	else
+		PS1='\u@\h:\w \$ '
+	fi
+	unset color_prompt force_color_prompt
 else
-	PS1='\u@\h:\w \$ '
+	eval "$(oh-my-posh init bash --config ~/.prompt.json)"
 fi
-unset color_prompt force_color_prompt
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
