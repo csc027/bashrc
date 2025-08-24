@@ -1,7 +1,9 @@
+# load profile
 if [ -f "$HOME/.profile" ]; then
-	source "$HOME/.profile"
+	source "$HOME/.profile";
 fi
 
-if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ]; then
-	source "$HOME/.bashrc"
+# load bashrc
+if [ -f "$HOME/.bashrc" ]; then
+	source "$HOME/.bashrc";
 fi

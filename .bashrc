@@ -6,6 +6,11 @@ case $- in
 	  *) return;;
 esac
 
+# load profile if it would not be run (i.e., when in a non-login shell)
+if [ $(shopt login_shell | cut -f2) == 'off' ] && [ -f ~/.profile ]; then
+	source ~/.profile;
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
