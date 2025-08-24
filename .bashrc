@@ -53,7 +53,13 @@ if [ -z "$(command -v oh-my-posh)" ]; then
 	fi
 	unset color_prompt force_color_prompt
 else
-	eval "$(oh-my-posh init bash --config ~/.prompt.json)"
+	# search for latest cached prompt
+	latest_cached_prompt=$(find ~/.cache/oh-my-posh -type f -regex '.*/init[^/]*$' -printf "%T@ %p\n" | sort -r | head -n 1 | cut -d' ' -f2);
+	if ! [ -z $latest_cached_prompt ]; then
+		source $latest_cached_prompt;
+	else
+		echo "No cached prompt found.  Please initialize oh-my-posh using 'oh-my-posh init bash --config ~/.prompt.json'.";
+	fi
 fi
 
 # enable color support of ls and also add handy aliases
