@@ -61,7 +61,7 @@ else
 	fi
 fi
 
-if [ f ~/.fzf.sh ]; then
+if [ -f ~/.fzf.sh ]; then
 	source ~/.fzf.sh
 fi
 
