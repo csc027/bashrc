@@ -105,3 +105,7 @@ fi
 if [ -f ~/.fzf.sh ]; then
 	source ~/.fzf.sh
 fi
+# Set default fzf command if fd is detected
+if ! [ -z "$(command -v fzf)" ] && ! [ -z "$(command -v fd)" ]; then
+	export FZF_DEFAULT_COMMAND='fd --type file --hidden --exclude .git'
+fi
