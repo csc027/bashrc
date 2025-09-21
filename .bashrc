@@ -61,10 +61,6 @@ else
 	fi
 fi
 
-if [ -f ~/.fzf.sh ]; then
-	source ~/.fzf.sh
-fi
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -103,4 +99,9 @@ if ! shopt -oq posix; then
 	elif [ -f /etc/bash_completion ]; then
 		source /etc/bash_completion
 	fi
+fi
+
+# Enable fzf shell integration; this must come after bash completion to work
+if [ -f ~/.fzf.sh ]; then
+	source ~/.fzf.sh
 fi
