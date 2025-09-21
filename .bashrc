@@ -8,7 +8,7 @@ esac
 
 # load profile if it would not be run (i.e., when in a non-login shell)
 if [ $(shopt login_shell | cut -f2) == 'off' ] && [ -f ~/.profile ]; then
-	source ~/.profile;
+	source ~/.profile
 fi
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -57,8 +57,12 @@ else
 	if [ -f ~/.omp.sh ]; then
 		source ~/.omp.sh
 	else
-		echo "No cached prompt found.  Please initialize oh-my-posh using 'oh-my-posh init bash --config ~/.prompt.json'.";
+		echo "No cached prompt found.  Please initialize oh-my-posh using 'oh-my-posh init bash --config ~/.prompt.json'."
 	fi
+fi
+
+if [ f ~/.fzf.sh ]; then
+	source ~/.fzf.sh
 fi
 
 # enable color support of ls and also add handy aliases
